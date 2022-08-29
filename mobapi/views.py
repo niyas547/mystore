@@ -86,3 +86,9 @@ class MobileModelDetailView(APIView):
             return Response(data=serializer.data)
         else:
             return Response(data=serializer.errors)
+
+    def delete(self,request,*args,**kwargs):
+        id=kwargs.get("id")
+        qs=Mobiles.objects.get(id=id)
+        qs.delete()
+        return Response({"message":"mobile deleted"})
